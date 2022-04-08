@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'TITLE_LOGIN'|trans({}, 'message' ) }}{% endblock %}
+
+{% block body %}
+    <div class="panel-right-content-login mx-auto mt-8">
+        <div class="flipper-card">
+            <div class="flipper-front">
+                <img class="mx-auto" src='/images/logo.png' alt="menu-logo-website">
+                <h2 class="text-4xl c-blue text-center">{{ 'TITLE_LOGIN'|trans({}, 'message' ) }}</h2>
+                <p class="text-center mb-5">{{ 'TITLE_NOT_MEMBER'|trans({}, 'message' ) }} 
+                <span class="signin c-blue">{{ 'TITLE_CREATE_ACCOUNT'|trans({}, 'message' ) }}</span></p>
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+                <form action="{{ path('app_login') }}" method="POST">
+                    <label for="inputEmail">{{ 'LABEL_EMAIL'|trans({}, 'message' ) }}</label>
+                    <input type="email" name="email" id="inputEmail" class="form-control"
+                            autocomplete="email" placeholder='{{ 'PLACEHOLDER_EMAIL'|trans({}, 'message' ) }}'
+                            autofocus required>
+                    <label for="inputPassword">{{ 'LABEL_PASSWORD'|trans({}, 'message' ) }}</label>
+                    <input type="password" name="password" id="inputPassword" class="form-control"
+                            autocomplete="current-password"
+                            placeholder='{{ 'PLACEHOLDER_PASSWORD'|trans({}, 'message' ) }}' required>
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                    
+                    {# Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                    See https://symfony.com/doc/current/security/remember_me.html #}
+                    <div class="checkbox my-3 text-right">
+                        <label>
+                            {{ 'LABEL_REMEMBER_ME'|trans({}, 'message' ) }}
+                            <input type="checkbox" class="ml-2" name="_remember_me"> 
+                        </label>
+                    </div>
+                    
+
+                    <button class="btn bg-blue mt-3 float-right" type="submit">
+                        {{ 'TITLE_CONNECT'|trans({}, 'message' ) }}
+                    </button>
+                </form>
+            </div>
+            <div class="flipper-back">
+                {{ render(controller('App\\Controller\\SecurityController::register')) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

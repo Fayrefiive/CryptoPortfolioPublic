@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+ 
+{% block title %}{{ 'TITLE_PORTFOLIO'|trans({}, 'message' ) }}{% endblock %}
+ 
+{% block body %}
+        <div class="panel-right-content">
+            <div id="portfolio-menu" class="grid grid-cols-2"> 
+                <a href="{{ path('app_portfolio',{'assets':'cryptos'}) }}">
+                    <div style="background-image:url('{{ asset('images/portfolio/cryptos.jpg') }}')"></div>
+                </a>
+                <a href="{{ path('app_portfolio',{'assets':'actions'}) }}">
+                    <div style="background-image:url('{{ asset('images/portfolio/actions.jpg') }}')"></div>
+                </a>
+            </div>
+        </div>
+{% endblock %}

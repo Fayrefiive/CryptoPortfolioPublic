@@ -1,0 +1,19 @@
+<img class="mx-auto" src='/images/logo.png' alt="menu-logo-website">
+<h2 class="text-4xl c-blue text-center">{{ 'TITLE_SIGNIN'|trans({}, 'message' ) }}</h2>
+<p class="text-center mb-5">{{ 'TITLE_IS_MEMBER'|trans({}, 'message' ) }} <span class="signin c-blue">{{ 'TITLE_LOG_YOU'|trans({}, 'message' ) }}</span></p>
+<form action="{{ path('app_register') }}" method="POST">
+    {{ form_errors(form) }}
+    {{ form_row(form.pseudo) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.password) }}
+    {{ form_row(form._token) }}
+    <p>
+        <input type="checkbox" class="c-blue" name="legal-notice" required>
+        {{ 'TEXT_I_HAVE_READ_AND_I_AGREE'|trans({}, 'message' ) }} <a href="{{ path('app_legal_notice') }}" target="_blank">{{ 'TEXT_LEGAL_NOTICE'|trans({}, 'message' ) }}</a>
+    </p>
+    <p>
+        <input type="checkbox" class="c-blue" name="cgu" required> 
+        {{ 'TEXT_I_HAVE_READ_AND_I_AGREE'|trans({}, 'message' ) }} <a href="" target="_blank">{{ 'TEXT_CGU'|trans({}, 'message' ) }}</a>
+    </p>
+    <button class="btn bg-blue mt-3 float-right" type="submit">{{ 'TITLE_SAVE'|trans({}, 'message' ) }}</button>
+</form>

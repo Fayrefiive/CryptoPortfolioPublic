@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+ 
+{% block title %}{{ 'TITLE_ACTIONS'|trans({}, 'message' ) }}{% endblock %}
+ 
+{% block body %}
+
+{% if app.user %}
+        You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+{% endif %}
+
+{% endblock %}

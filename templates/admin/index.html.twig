@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+ 
+{% block title %}{{ 'TITLE_ADMIN_MAX'|trans({}, 'message' ) }}{% endblock %}
+ 
+{% block body %}
+    <div class="panel-right-content">
+        <h1 class="c-blue text-3xl text-center mb-20">{{ 'TITLE_ADMIN_MAX'|trans({}, 'message' ) }}</h1>
+        <div id="admin-panel">
+            <div id="admin-header-button">
+                <div id="admin-hidden-button">
+                    <button class="hidden-button"><a href ="{{ path('app_admin_user') }}" >{{ 'ADMIN_MANAGE_USERS'|trans({}, 'message' ) }}</a></button>
+                    <button class="hidden-button"><a href ="{{ path('app_admin_platform') }}">{{ 'ADMIN_MANAGE_PLATFORMS'|trans({}, 'message' ) }}</a></button>
+                    <button class="hidden-button"><a href ="{{ path('app_admin_currency') }}">{{ 'ADMIN_MANAGE_CURRENCY'|trans({}, 'message' ) }}</a></button>
+                    <button class="hidden-button"><a href ="{{ path('app_admin_logs') }}">{{ 'ADMIN_LOGS'|trans({}, 'message' ) }}</a></button>
+                </div>
+                <i class="fas fa-cog c-blue"></i>
+            </div>
+            <div id="admin_users_connect" class="admin_chart">
+                <img src="/images/admin/graphique_0.png" alt="">
+            </div>
+            <div id="admin_chart_and_data" class="grid grid-cols-2">
+                <div id="admin_chart_left">
+                    <div id="admin_chart_newUsers" class="admin_chart">
+                        <img src="/images/admin/graphique_1.png" alt="">
+                    </div>
+                    <div id="admin_chart_totalUsers" class="admin_chart">
+                        <img src="/images/admin/graphique_4.PNG" alt="">
+                    </div>
+                </div>
+                <div id="admin_chart_right">
+                    <div id="admin_chart_wordsSearching" class="admin_chart">
+                        <img src="/images/admin/graphique_2.PNG" alt="">
+                    </div>
+                    <div id="admin_chart_platformsRegister" class="admin_chart">
+                        <img src="/images/admin/graphique_3.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+{% endblock %}

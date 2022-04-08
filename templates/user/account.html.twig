@@ -1,0 +1,210 @@
+{% extends 'base.html.twig' %}
+ 
+{% block title %}{{ 'TITLE_MY_ACCOUNT'|trans({}, 'message' ) }}{% endblock %}
+ 
+{% block body %}
+    <div class="col-start-2 col-span-8">
+        <div class="panel-right-content">
+            <h1 class="c-blue text-3xl text-center mb-20">{{ 'TITLE_MY_ACCOUNT'|trans({}, 'message' ) }}</h1>
+            <div id="admin-panel">
+                <div class="admin-table">
+                    <h2 class="admin-subtitle mb-5" style="background-image:url('{{ asset('images/asset-card-blue.jpg') }}')">Mes informations</h2>
+                    <div class="grid grid-cols-4">
+                        <div class="col-start-2 col-span-2">
+                            <form id="formUser" action="{{ path('app_account') }}" method="POST" data-turbo="false">
+                                {{ form_errors(userForm) }}
+                                {{ form_row(userForm.email) }}
+                                {{ form_row(userForm.pseudo) }}
+                                {{ form_row(userForm.password) }}
+                                {{ form_row(userForm._token) }}
+                                <div class="text-right">
+                                    <button class="btn bg-blue mt-3" type="submit">{{ 'TITLE_EDIT'|trans({}, 'message' ) }}</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <h2 class="admin-subtitle mt-3" style="background-image:url('{{ asset('images/asset-card-blue.jpg') }}')">Mes plateformes</h2>
+                    <div class="admin_button_add mt-3">
+                        <button id="add_platform" class="admin_add">{{ 'ADMIN_ADD_PLATFORM'|trans({}, 'message' ) }}</button>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>{{ 'TABLE_TH_ID'|trans({}, 'message' ) }}</th>
+                                <th>{{ 'TABLE_TH_ICON'|trans({}, 'message' ) }}</th>
+                                <th>{{ 'TABLE_TH_NAME'|trans({}, 'message' ) }}</th>
+                                <th>{{ 'TABLE_TH_ACTIONS'|trans({}, 'message' ) }}</th>
+                            </tr>
+                        </thead>
+                        <tbody id="body-table">
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL EDIT EXCHANGE DATAS -->
+    <div id="modalPlatform" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2 class="c-blue pb-5">{{ 'TITLE_EDIT_EXCHANGE'|trans({}, 'message' ) }}</h2>
+                <hr>
+            </div>
+            <form id="formPlatform" action="{{ path('app_account') }}" method="POST" data-turbo="false">
+                <div class="modal-body">
+                    <div class="disclaimer">
+                        <p>{{ 'TEXT_MODAL_ADD_EXCHANGE_DISCLAIMER'|trans({}, 'message' )|raw }}</p>
+                    </div>
+                    {{ form_errors(form) }}
+                    {{ form_label(form.platform) }}
+                    <div class="pb-2">
+                        {{ form_widget(form.platform) }}
+                    </div>
+                    {{ form_row(form.publicKey) }}
+                    {{ form_row(form.secretKey) }}
+                    {{ form_row(form.address) }}
+                    {{ form_row(form.passphrase) }}
+                    {{ form_row(form.editId) }}
+                    {{ form_row(form._token) }}
+                </div>
+                <div class="modal-footer">
+                    <button class="btn bg-blue mt-3 float-right" type="submit">{{ 'TITLE_EDIT'|trans({}, 'message' ) }}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- MODAL CONFIRM DELETE -->
+    <div id="modalDelete" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close closeDelete">&times;</span>
+                <h2 class="c-blue pb-5">{{ 'TITLE_PLATFORM_CONFIRM_DELETE'|trans({}, 'message' ) }}</h2>
+                <hr>
+            </div>
+            <div class="modal-body">
+                <p>{{ 'TEXT_PLATFORM_CONFIRM_DELETE'|trans({}, 'message' ) }}</p>
+            </div>
+            <div class="modal-footer">
+                <button id="confirmDelete" class="btn bg-blue mt-3 float-right" type="button">{{ 'TITLE_CONFIRM'|trans({}, 'message' ) }}</button>
+                <button class="btn bg-grey mt-3 float-right closeDelete mr-1" type="button">{{ 'TITLE_CLOSE'|trans({}, 'message' ) }}</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('cryptos') }}
+    <script>
+        $(function (){
+            /* --- INITIALISATION --- */
+            let edit = 0;
+            let del = 0;
+            displayPlatforms();
+
+            /* --- ON CLICK EVENT --- */
+            $(document).on('click', '.fa-edit', function() {
+                edit = $(this).parent().parent().attr('id');
+                edit = edit.split('_');
+                $('#user_platform_platform').val(edit[1]);
+                $('#user_platform_platform').prop("disabled", true);
+                showOptionModal();
+                $("#user_platform_editId").val(edit[0]);
+                $('#modalPlatform').show();
+            });
+            $(document).on('click', '.fa-trash-alt', function() {
+                del = $(this).parent().parent().attr('id');
+                del = del.split('_');
+                del = del[0];
+                $('#modalDelete').show();
+            });
+            $('#add_platform').on('click', function() {
+                $("#user_platform_editId").val(null);
+                $("#user_platform_platform").prop( "disabled", false );
+                $('#modalPlatform').show();
+            });
+            $('#confirmDelete').on('click', function() {
+                $.ajax({
+                    url: '{{ (path('app_account_delete_platform')) }}',
+                    method: "POST",
+                    data: { id: del },
+                    dataType: 'json',
+                    success: function(response) {
+                        $('#modalDelete').hide();
+                        displayPlatforms();
+                    }
+                });
+            });
+            $('.closeDelete').on('click', function() {
+                $('#modalDelete').hide();
+            });
+
+            /* --- ON SUBMIT EVENT --- */
+            $("#formPlatform").submit(function( event ) {
+                $("#user_platform_platform").prop( "disabled", false );
+            }); 
+
+            /* --- FUNCTION --- */
+            function displayPlatforms() {
+                $.ajax({
+                    url: '{{ (path('app_account_get_platforms')) }}',
+                    method: "POST",
+                    dataType: 'json',
+                    success: function(response) {
+                        $('#body-table').html("");
+                        let content = "";
+                        response.forEach(function callback(value, key) {
+                            content += "<tr id='"+response[key].id+"_"+response[key].platform.id+"'>";
+                            content += "<td>"+response[key].id+"</td>";
+                            content += "<td><img src='/images/platforms/cryptos/"+response[key].platform.image+"' alt='icon-"+response[key].platform.name+"' style='height: 2rem; width: auto; margin: auto' ></td>";
+                            content += "<td>"+response[key].platform.name+"</td>";
+                            content += "<td><i class='platformModal fas fa-edit c-blue'></i><i class='fas fa-trash-alt c-blue'></i></td>";
+                            content += "</tr>";
+                        });
+                        $('#body-table').html(content);
+                    }
+                });
+            }
+
+            function showOptionModal() {
+                let option = $('#user_platform_platform option:selected').attr('data-name');
+                switch (option) {
+                    case "Metamask":
+                    case "Substrate":
+                        $('#user_platform_publicKey').parent().hide();
+                        $('#user_platform_publicKey').prop('required', false);
+                        $('#user_platform_secretKey').parent().hide();
+                        $('#user_platform_secretKey').prop('required', false);
+                        $('#user_platform_passphrase').parent().hide();
+                        $('#user_platform_passphrase').prop('required', false);
+                        $('#user_platform_address').parent().show();
+                        $('#user_platform_address').prop('required', true);
+                        break;
+                    case "KuCoin":
+                        $('#user_platform_publicKey').parent().show();
+                        $('#user_platform_publicKey').prop('required', true);
+                        $('#user_platform_secretKey').parent().show();
+                        $('#user_platform_secretKey').prop('required', true);
+                        $('#user_platform_passphrase').parent().show();
+                        $('#user_platform_passphrase').prop('required', true);
+                        $('#user_platform_address').parent().hide();
+                        $('#user_platform_address').prop('required', false);
+                        break;
+                    default:
+                        $('#user_platform_publicKey').parent().show();
+                        $('#user_platform_publicKey').prop('required', true);
+                        $('#user_platform_secretKey').parent().show();
+                        $('#user_platform_secretKey').prop('required', true);
+                        $('#user_platform_passphrase').parent().hide();
+                        $('#user_platform_passphrase').prop('required', false);
+                        $('#user_platform_address').parent().hide();
+                        $('#user_platform_address').prop('required', false);
+                        break;
+                }
+            }
+        });
+    </script>
+{% endblock %}

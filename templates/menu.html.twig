@@ -1,0 +1,60 @@
+<div id="menu-col">
+    <a href="{{ path('app_home') }}"><img class="mb-8" src='/images/logo_vertical.png' alt="menu-logo-website"></a>
+    <a href="{{ path('app_home') }}">
+        <div id="{{ 'TITLE_HOME'|trans({}, 'message' ) }}" class="menu-link text-center mb-2">
+            <i class="fas fa-home c-blue"></i>
+            <span>{{ 'TITLE_HOME'|trans({}, 'message' ) }}</span>
+        </div>
+    </a>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('app_admin') }}">
+            <div id="{{ 'TITLE_ADMIN_MIN'|trans({}, 'message' ) }}" class="menu-link text-center mb-2">
+                <i class="fas fa-tools c-blue"></i>
+                <span>{{ 'TITLE_ADMIN_MIN'|trans({}, 'message' ) }}</span>
+            </div>
+        </a>
+    {% endif %}
+    {% if not app.user %}
+    <a href="{{ path('app_login') }}">
+        <div id="{{ 'TITLE_LOGIN'|trans({}, 'message' ) }}" class="menu-link text-center mb-2">
+            <i class="fas fa-sign-in-alt c-blue"></i>
+            <span>{{ 'TITLE_LOGIN'|trans({}, 'message' ) }}</span>
+        </div>
+    </a>
+    {% endif %}
+    {% if app.user %}
+        <a href="{{ path('app_account') }}">
+            <div id="{{ 'TITLE_MY_ACCOUNT'|trans({}, 'message' ) }}" class="menu-link text-center mb-2">
+                <i class="fas fa-user c-blue"></i>
+                <span>{{ 'TITLE_MY_ACCOUNT'|trans({}, 'message' ) }}</span>
+            </div>
+        </a>
+        <a href="{{ path('app_portfolio') }}">
+            <div id="{{ 'TITLE_PORTFOLIO'|trans({}, 'message' ) }}" class="menu-link text-center mb-2">
+                <i class="fas fa-chart-bar c-blue"></i>
+                <span>{{ 'TITLE_PORTFOLIO'|trans({}, 'message' ) }}</span>
+            </div>
+        </a>
+    {% endif %}
+    <a href="{{ path('app_help') }}">
+        <div id="{{ 'TITLE_HELP'|trans({}, 'message' ) }}" class="menu-link text-center mb-2">
+            <i class="fas fa-question-circle c-blue"></i>
+            <span>{{ 'TITLE_HELP'|trans({}, 'message' ) }}</span>
+        </div>
+    </a>
+    {% if app.user %}
+        <a href="{{ path('app_logout') }}">
+            <div class="menu-link text-center">
+                <i class="fas fa-sign-out-alt c-blue"></i>
+                <span>{{ 'TITLE_LOGOUT'|trans({}, 'message' ) }}</span>
+            </div>
+        </a>
+        <div id="switch_currency">
+            <div class="switch-button">
+                <input class="switch-button-checkbox" type="checkbox"></input>
+                <label class="switch-button-label" for=""><span class="switch-button-label-span">{{ app.user.getPrimaryCurrency().getAcronym() }}</span></label>
+            </div>
+        </div>
+    {% endif %}
+    <a href="#" id="vedfuture-menu" ><img src="https://fontmeme.com/permalink/220303/00373c383b62738acb996433a917a0d6.png" alt="polices-de-calligraphie" border="0"></a>
+</div>

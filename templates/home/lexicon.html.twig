@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+ 
+{% block title %}{{ 'TITLE_LEXICON'|trans({}, 'message' )|raw }}{% endblock %}
+ 
+{% block body %}
+    <div class="panel-right-content">
+        <h1 class="c-blue text-3xl text-center mb-20">{{ 'TITLE_LEXICON'|trans({}, 'message' ) }}</h1>
+
+        <div class="lexicon-content" style="width: 70%">
+            <h2 class="c-blue text-2xl"><i class='fas fa-landmark mr-3'></i>{{ 'LEXICON_MARKET_CAP_TITLE'|trans({}, 'message' ) }}</h2>
+            <p class="mb-5">{{ 'LEXICON_MARKET_CAP_TEXT'|trans({}, 'message' )|raw }}</p>
+            <h2 class="c-blue text-2xl"><i class='fas fa-chart-area mr-3 mb-5'></i>{{ 'LEXICON_PRICE_TITLE'|trans({}, 'message' ) }}</h2>
+            <h2 class="c-blue text-2xl"><i class='far fa-money-bill-alt mr-3 mb-5'></i>{{ 'LEXICON_WALLET_PRICE_TITLE'|trans({}, 'message' ) }}</h2>
+            <h2 class="c-blue text-2xl"><i class='fas fa-wallet mr-3 mb-5'></i>{{ 'LEXICON_WALLET_TITLE'|trans({}, 'message' ) }}</h2>
+            <h2 class="c-blue text-2xl"><i class='fas fa-coins mr-3'></i>{{ 'LEXICON_STAKING_TITLE'|trans({}, 'message' ) }}</h2>
+            <p class="mb-5">{{ 'LEXICON_STAKING_TEXT'|trans({}, 'message' )|raw }}</p>
+            <h2 class="c-blue text-2xl"><i class='fas fa-unlock-alt mr-3'></i>{{ 'LEXICON_LOCKED_TITLE'|trans({}, 'message' ) }}</h2>
+            <p class="mb-5">{{ 'LEXICON_LOCKED_TEXT'|trans({}, 'message' )|raw }}</p>
+            <h2 class="c-blue text-2xl"><i class='fas fa-balance-scale mr-3'></i>{{ 'LEXICON_POOLS_TITLE'|trans({}, 'message' ) }}</h2>
+            <p class="mb-5">{{ 'LEXICON_POOLS_TEXT'|trans({}, 'message' )|raw }}</p>
+            <h2 class="c-blue text-2xl"><i class='fas fa-tractor mr-3'></i>{{ 'LEXICON_FARMING_TITLE'|trans({}, 'message' ) }}</h2>
+            <p class="mb-5">{{ 'LEXICON_FARMING_TEXT'|trans({}, 'message' )|raw }}</p>
+            <h2 class="c-blue text-2xl"><i class='fas fa-hand-holding-usd mr-3'></i>{{ 'LEXICON_LENDING_TITLE'|trans({}, 'message' ) }}</h2>
+            <p class="mb-5">{{ 'LEXICON_LENDING_TEXT'|trans({}, 'message' )|raw }}</p>
+            {# <h2 class="c-blue text-2xl"><i class='fas fa-dungeon mr-3'></i>{{ 'LEXICON_DEPOSIT_TITLE'|trans({}, 'message' ) }}</h2>
+            <p class="mb-5">{{ 'LEXICON_DEPOSIT_TEXT'|trans({}, 'message' )|raw }}</p>
+            <h2 class="c-blue text-2xl"><i class='fas fa-chart-line mr-3'></i>{{ 'LEXICON_YIELD_TITLE'|trans({}, 'message' ) }}</h2>
+            <p class="mb-5">{{ 'LEXICON_YIELD_TEXT'|trans({}, 'message' )|raw }}</p> #}
+            <h2 class="c-blue text-2xl"><i class='fas fa-gift mr-3'></i>{{ 'LEXICON_REWARDS_TITLE'|trans({}, 'message' ) }}</h2>
+            <p class="mb-5">{{ 'LEXICON_REWARDS_TEXT'|trans({}, 'message' )|raw }}</p>
+        </div>
+    </div>
+{% endblock %}

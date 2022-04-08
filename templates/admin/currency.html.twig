@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+ 
+{% block title %}{{ 'TITLE_USERS'|trans({}, 'message' ) }}{% endblock %}
+ 
+{% block body %}
+    <div class="panel-right-content">
+        <h1 class="c-blue text-3xl text-center mb-20">{{ 'ADMIN_MANAGE_CURRENCY'|trans({}, 'message' ) }}</h1>
+        <div id="admin-panel">
+            <div class="admin_button_add">
+                <button class="admin_add"><a href ="#" >{{ 'ADMIN_ADD_CURRENCY'|trans({}, 'message' ) }}</a></button>
+            </div>
+            <div class="admin-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>{{ 'TABLE_TH_ID'|trans({}, 'message' ) }}</th>
+                            <th>{{ 'TABLE_TH_ACRONYM'|trans({}, 'message' ) }}</th>
+                            <th>{{ 'TABLE_TH_NAME'|trans({}, 'message' ) }}</th>
+                            <th>{{ 'TABLE_TH_SYMBOL'|trans({}, 'message' ) }}</th>
+                            <th>{{ 'TABLE_TH_ACTIONS'|trans({}, 'message' ) }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for currency in currencys %}
+                            <tr>
+                                <td>{{ currency.id }}</td>
+                                <td>{{ currency.acronym }}</td>
+                                <td>{{ currency.name }}</td>
+                                <td>{{ currency.symbol }}</td>
+                                <td>
+                                    <i class="fas fa-edit c-blue"></i>
+                                    <i class="fas fa-trash-alt c-blue"></i>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

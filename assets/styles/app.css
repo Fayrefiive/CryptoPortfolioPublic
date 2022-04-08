@@ -1,0 +1,171 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
+/* --- GENERAL --- */
+body { background-color: #F1F3FF; }
+h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; font-weight: 900; color: #4762fa; }
+p, span, li { font-size: 0.7rem }
+a { color: #4762fa; }
+a:hover { color: #4762fa; text-decoration: underline; }
+label { color: #4762fa; font-weight: bolder; }
+input[type=text], input[type=password], input[type=email], textarea, select { padding: 10px 12px 10px 12px; border: 0px !important; border-radius: 8px; margin-bottom: 5px; 
+  margin-top: 2px; width: 100%; box-sizing: border-box; color: rgb(80, 106, 255); background-color: #E4E8FF; font-size: 14px; letter-spacing: 1px
+}
+input::placeholder { color: rgba(80, 106, 255, 0.4); }
+input:focus, textarea:focus, select:focus { -moz-box-shadow: none !important; -webkit-box-shadow: none !important; box-shadow: none !important;
+  border: 1px solid #304FFE; outline-width: 0
+}
+button:focus {-moz-box-shadow: none !important; -webkit-box-shadow: none !important; box-shadow: none !important; outline-width: 0}
+
+.btn { padding: 0.5rem 0.75rem; border-radius: 8px; }
+.btn:hover { background-color: #4762fa }
+.bg-blue { background-color: #4762fa; color: #ffffff; }
+.bg-grey { background-color: gray; color: #ffffff; }
+.bg-dark { background-color: #333333; }
+.bg-input { background-color: #E4E8FF }
+.c-blue { color: #4762fa; }
+.hr-blue { border: 1px solid #4762fa; }
+.border-red { border: 1px solid red !important; }
+.btn-top-right { text-align: right }
+.btn-top-right a { color: #ffffff }
+.btn-top-right a:hover { color: #ffffff }
+
+/* --- MODAL --- */
+.modal { display: none; position: fixed; z-index: 1; padding-top: 50px; padding-bottom: 50px; left: 0; top: 0; width: 100%; height: 100%; overflow: auto;
+  background-color: rgb(0,0,0); background-color: rgba(0,0,0,0.4);
+}
+.modal-content { position: relative; background-color: #fefefe; margin: auto; padding: 0; border: 1px solid #888; width: 40%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19); -webkit-animation-name: animatetop; -webkit-animation-duration: 0.4s;
+  animation-name: animatetop; animation-duration: 0.4s
+}
+.close { color: #4762fa; position: absolute; top: 0; right: 2rem; font-size: 28px; font-weight: bold; }
+.close:hover, .close:focus { cursor: pointer; }
+.modal-header { padding: 1rem 2rem; }
+.modal-body { padding: 1rem 2rem 0 2rem; }
+.modal-footer { padding: 0 2rem 5rem 2rem; }
+@-webkit-keyframes animatetop { from {top:-300px; opacity:0}  to {top:0; opacity:1} }
+@keyframes animatetop { from {top:-300px; opacity:0} to {top:0; opacity:1} }
+
+/* --- LEFT SIDE : MENU --- */
+#menu-col { position: fixed; height:100%; width: 6rem; padding: 2rem 0.75rem; background-color: #ffffff; box-shadow: 0px 0px 15px 10px rgba(80, 106, 255, 0.1); }
+.menu-link { padding: 0.5rem 0; display: grid; }
+.menu-link:hover { background-color: rgba(80, 106, 255, 0.15); cursor: pointer; }
+.menu-link i { font-size: 1.25rem; }
+#menu-col .logout { position: sticky; bottom: 0; width:100% }
+#menu-col a { text-decoration: none; }
+#switch_currency { position: absolute; left: 0; bottom: 0; width: 6rem; padding: 0 0.75rem 3rem 0.75rem }
+#vedfuture-menu { position: absolute; left: 0; bottom: 0; width: 6rem; padding: 0 0.75rem 1rem 0.75rem }
+.switch-button { background: rgba(80, 106, 255, 0.5); border-radius: 30px; overflow: hidden; width: 100%; text-align: center; color: #ffffff;
+  position: relative; padding-right: 50%;
+}
+.switch-button:before { position: absolute; font-weight: bolder; top: 0; bottom: 0; right: 0; width: 50%; display: flex; align-items: center;
+  justify-content: center; z-index: 3; pointer-events: none; font-size: 0.7rem
+}
+.switch-button-checkbox { cursor: pointer; position: absolute; top: 0; left: 0; bottom: 0; width: 100%; height: 100%; opacity: 0; z-index: 2; }
+.switch-button-checkbox:checked + .switch-button-label:before { transform: translateX(100%); transition: transform 300ms linear; }
+.switch-button-checkbox + .switch-button-label { color: #ffffff; position: relative; padding: 0.2rem 0; display: block; user-select: none; pointer-events: none; }
+.switch-button-checkbox + .switch-button-label:before { content: ""; background: #4762fa; height: 100%; width: 100%; position: absolute; left: 0; top: 0;
+  border-radius: 30px; transform: translateX(0); transition: transform 300ms;
+}
+.switch-button-checkbox + .switch-button-label .switch-button-label-span { position: relative; }
+
+/* --- RIGHT SIDE : CONTENT --- */
+.content-right { width: 100%; padding-left: 6rem; }
+.panel-right-content { background-color: #ffffff; margin: 2rem; padding: 2rem; box-shadow: 0px 0px 15px 10px rgba(80, 106, 255, 0.1); border-radius: 2rem }
+.panel-right-content-login { height: 35rem; background-color: #ffffff; width: 40%; padding: 2rem; box-shadow: 0px 0px 15px 10px rgba(80, 106, 255, 0.1); border-radius: 2rem; }
+
+/* --- LOGIN & SIGNIN --- */
+.panel-right-content-login img { width: 40%; height: auto; }
+.panel-right-content-login .signin:hover { cursor:pointer; text-decoration: underline; }
+.flipped { height: 44rem; }
+.flipper-card { width: 100%; height: 100%; position: relative; transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), -webkit-transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.flipper-front, .flipper-back { position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; background: #ffffff; }
+.flipper-back { background: #ffffff; -webkit-transform: rotateY(180deg); transform: rotateY(180deg); }
+.flipper-is-flipped { -webkit-transform: rotateY(180deg); transform: rotateY(180deg); }
+
+/* --- INDEX & HOME --- */
+#home-image { width: 60%; height: auto; }
+.tradingview-widget-container, .tradingview-widget-container iframe { width: 100% !important }
+
+/* --- FOOTER --- */
+#footer { background: #ffffff; padding-top: 2rem; box-shadow: 0px 0px 15px 10px rgba(80, 106, 255, 0.1) }
+#footer .footer-col { padding-left: 2rem ; padding-right: 2rem }
+#footer h3 { margin-bottom: 1rem; text-decoration: underline; }
+#footer #follow-us { display: flex; margin-bottom: 1rem }
+#footer .follow-us { width: 8%; height: auto; margin-right: 0.5rem }
+#footer .partnership { border-right: 2px solid #4762fa; border-left: 2px solid #4762fa }
+#footer .partnership img { margin: 0.2rem; width: 95%; border: 1px solid #4762fa }
+#footer #copyright { background: #4762fa; }
+#footer #copyright h4 { color: #ffffff; font-weight: bold; }
+#footer #copyright a { color: #ffffff; font-weight: bold; }
+
+/* --- USER ACCOUNT --- */
+.admin-subtitle { text-align: center; padding: 1rem; border-top: 1px solid #4762fa; border-bottom: 1px solid #4762fa; }
+.admin-subtitle:hover { background:rgba(80, 106, 255, 0.1); cursor: pointer; }
+
+/* --- CRYPTO PORTFOLIO --- */
+#portfolio-menu div { height: 30rem; background-size: cover; background-repeat: no-repeat; background-position: center; margin: 0 2rem; border-radius: 2rem; }
+#crypto-chart { background-color: rgba(80, 106, 255, 0.1); border-radius: 2rem; margin-top: 1rem; height: 30rem; width: 100%; }
+#chartContainer { margin: auto; padding: 1rem; width: 100% !important; height: auto !important; }
+.exchange-card, .assets-card { border: 1px solid #4762fa; background-position: center; background-repeat: no-repeat; background-size: cover; }
+.exchange-card, .exchange-card-add { margin: 0.5rem 0.25rem 0 0.25rem; border-radius: 2rem; padding: 2rem }
+.assets-card { margin: 0.5rem 0.5rem 0 0.25rem; border-radius: 2rem; padding: 1rem }
+.exchange-card, .exchange-card-add { height: 6rem; }
+.exchange-card-add { border: 1px dashed #4762fa; }
+.exchange-card-with-logo { padding: 0.8rem !important; }
+.exchange-card img, .exchange-card-add img { margin: auto; height: 100%; width: auto; }
+.assets-card img { margin: auto; height: 3.5rem; }
+.assets-card .crypto-information i { font-size: 0.7rem }
+.exchange-card:hover, .exchange-card-add:hover, .assets-card:hover { cursor: pointer; box-shadow: 0px 0px 15px 10px rgba(80, 106, 255, 0.2); }
+.exchange-box-shadow { box-shadow: 0px 0px 15px 10px rgba(80, 106, 255, 0.2); }
+.logo-plateform-card { height: 3rem; width: auto; }
+.plateform-used-card { height: 1.25rem !important; width: auto !important; margin-left: 0.2rem !important }
+.platform-used { display: flex }
+.connect-wallet { width: 100%; margin-bottom: 5px; margin-top: 2px; color: #4762fa; }
+.connect-wallet:hover { background-color: rgba(80, 106, 255, 0.2); }
+#displayAssets .buttonChooseDisplaying { border: 1px solid #4762fa; padding: 0.25rem 1rem }
+#displayAssets .buttonChooseDisplaying:hover { cursor: pointer; background: #4762fa; }
+#displayAssets .buttonChooseDisplaying:hover i { cursor: pointer; color: #ffffff; }
+.table-crypto { width: 100%; }
+.table-crypto .activeSorter { color: #ffffff; background-color: #2742da; }
+.table-crypto thead { background: #4762fa; color: #ffffff; }
+.table-crypto thead tr { border: 1px solid #4762fa }
+.table-crypto thead tr .th-icons:hover { background: #2742da; cursor: pointer; }
+.table-crypto tbody tr { color: #4762fa; border-bottom: 1px solid #4762fa; font-size: 0.7rem }
+.table-crypto tbody tr:hover { background: rgba(71,98,250, 0.5); color: #ffffff; cursor: pointer; }
+.table-crypto-platforms { display: inline-flex; padding-top: 1rem }
+.table-crypto-icon img { width: 3rem; height: auto; padding: 0.5rem; margin: auto }
+#modalShowDetail .modal-header i { position: absolute; right: 2rem; top: 1rem; }
+#modalShowDetail .modal-header i:hover { cursor: pointer; }
+#modalShowDetail .modal-content { width: 80%; }
+#modalShowDetail #crypto-details { padding: 1rem }
+#modalShowDetail .price-change { background: #dce0fa; padding: 1rem }
+.hr-modal-detail { border: 1px solid #4762fa }
+#modalShowDetail #crypto-details-table { width: 100%; margin : 1rem 0 }
+#modalShowDetail #crypto-details-table thead { background: #4762fa; color: #ffffff; font-weight: bold; text-align: center; }
+#modalShowDetail #crypto-details-table tbody tr { border-bottom: 1px solid #4762fa; color: #4762fa; text-align: center; background: #ffffff; }
+#modalShowDetail .crypto-details-platforms { display: inline-flex }
+#modalShowDetail .crypto-details-platforms img { height: 2rem; margin: 0.5rem }
+#modalShowDetail .crypto-details-platforms b { margin: auto }
+#modalShowDetail #crypto-details-table tbody .detail-expand:hover { cursor: pointer }
+#social-network-icons { display: inline-flex; }
+#social-network-icons img { height: 2rem; width: auto; margin: 0 0.1rem }
+#modalPlatform .disclaimer { border: 2px solid red; padding: 1rem; text-align: center; background: rgba(255,0,0,0.2); margin-bottom: 1rem; }
+
+/* --- ADMIN --- */
+#admin-header-button { display: flex; align-items: flex-end; justify-content: right; margin-bottom: 1rem }
+#admin-header-button i { font-size: 3rem; margin-left: 1rem }
+#admin-header-button i:hover { cursor: pointer }
+#admin-hidden-button .hidden-button, .admin_add { height: 3rem; border-radius: 2rem; background-color: #4762fa; color: #ffffff; padding: 0.5rem 2rem; margin: 0 0.25rem }
+#admin-hidden-button .hidden-button a, .admin_add a { color: #ffffff }
+.admin_chart { border: 1px solid #4762fa; padding: 1rem }
+.admin_button_add { text-align: right; }
+.admin-table table { width: 100%; margin-top: 1rem }
+.admin-table table thead { background-color: #4762fa; color: #ffffff; font-weight: bold; text-align: center; }
+.admin-table table tbody tr { border-bottom: 1px solid #4762fa; color: #4762fa; text-align: center; background: #ffffff; }
+.admin-table i { margin: 0 0.5rem }
+.admin-table i:hover { cursor:pointer }

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+ 
+{% block title %}{{ 'TITLE_HOME'|trans({}, 'message' ) }}{% endblock %}
+ 
+{% block body %}
+    <div class="panel-right-content text-center">
+        <img id="home-image" class="mx-auto my-4" src="/images/logo_horizontal.png" alt="">
+        <h1 class="c-blue text-4xl mb-8">{{ 'TITLE_WELCOME'|trans({}, 'message' ) }}</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dolor lectus, mattis id justo non, fringilla posuere massa. Nullam quis consectetur dui, pharetra fermentum purus. Pellentesque a enim eget lacus venenatis efficitur sit amet vitae enim. Pellentesque pulvinar malesuada ante. Suspendisse vel diam nibh. Sed condimentum sapien id ipsum aliquet aliquam. Vestibulum laoreet pellentesque risus ac venenatis. Fusce vel arcu dictum, malesuada mauris id, elementum ante. Fusce accumsan condimentum turpis vel tempor. Nulla commodo leo justo, nec aliquet elit auctor eu. Duis scelerisque vel purus in vestibulum. Nam consectetur efficitur enim, et vehicula purus ultricies nec. Proin non ex non nisl sollicitudin sagittis. Praesent in metus dictum justo porttitor commodo. Integer aliquam in nunc sed malesuada.</p>
+    </div>
+{% endblock %}
